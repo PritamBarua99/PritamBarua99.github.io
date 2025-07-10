@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pritam Barua - Portfolio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            /* Subtle gradient background */
+            background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+            color: #e0e0e0; /* Light gray text for contrast */
+        }
+        .text-gradient-orange-red {
+            background-image: linear-gradient(to right, #fb923c, #ef4444); /* Tailwind orange-400 to red-500 */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+        }
+        .bg-gradient-orange-red {
+            background-image: linear-gradient(to right, #fb923c, #ef4444); /* Tailwind orange-400 to red-500 */
+        }
+        .card-shadow {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .skill-item {
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .skill-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+        }
+
+        .skill-circles span {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #4a4a4a; /* Unfilled circle color */
+            margin-left: 4px;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .skill-circles span {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #4a4a4a; /* Unfilled circle color */
+            margin-left: 4px;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .skill-item:hover .skill-circles span {
+            background-color: #4a4a4a; /* Default unfilled color on hover */
+        }
+
+        .skill-item:hover li[data-level="1"] .skill-circles span:nth-child(-n+1),
+        .skill-item:hover li[data-level="2"] .skill-circles span:nth-child(-n+2),
+        .skill-item:hover li[data-level="3"] .skill-circles span:nth-child(-n+3),
+        .skill-item:hover li[data-level="4"] .skill-circles span:nth-child(-n+4),
+        .skill-item:hover li[data-level="5"] .skill-circles span:nth-child(-n+5) {
+            background-color: #fb923c; /* Filled color */
+        }
+
+        .skill-item:hover li[data-level="1"] .skill-circles span:nth-child(1) { transition-delay: 0s; }
+        .skill-item:hover li[data-level="2"] .skill-circles span:nth-child(1) { transition-delay: 0s; }
+        .skill-item:hover li[data-level="2"] .skill-circles span:nth-child(2) { transition-delay: 0.1s; }
+        .skill-item:hover li[data-level="3"] .skill-circles span:nth-child(1) { transition-delay: 0s; }
+        .skill-item:hover li[data-level="3"] .skill-circles span:nth-child(2) { transition-delay: 0.1s; }
+        .skill-item:hover li[data-level="3"] .skill-circles span:nth-child(3) { transition-delay: 0.2s; }
+        .skill-item:hover li[data-level="4"] .skill-circles span:nth-child(1) { transition-delay: 0s; }
+        .skill-item:hover li[data-level="4"] .skill-circles span:nth-child(2) { transition-delay: 0.1s; }
+        .skill-item:hover li[data-level="4"] .skill-circles span:nth-child(3) { transition-delay: 0.2s; }
+        .skill-item:hover li[data-level="4"] .skill-circles span:nth-child(4) { transition-delay: 0.3s; }
+        .skill-item:hover li[data-level="5"] .skill-circles span:nth-child(1) { transition-delay: 0s; }
+        .skill-item:hover li[data-level="5"] .skill-circles span:nth-child(2) { transition-delay: 0.1s; }
+        .skill-item:hover li[data-level="5"] .skill-circles span:nth-child(3) { transition-delay: 0.2s; }
+        .skill-item:hover li[data-level="5"] .skill-circles span:nth-child(4) { transition-delay: 0.3s; }
+        .skill-item:hover li[data-level="5"] .skill-circles span:nth-child(5) { transition-delay: 0.4s; }
+
+        /* Hide scrollbar for Familiar Technologies */
+        #familiar-technologies .overflow-x-auto {
+            scrollbar-width: none;  /* Firefox */
+            -ms-overflow-style: none;  /* IE and Edge */
+        }
+
+        #familiar-technologies .overflow-x-auto::-webkit-scrollbar {
+            display: none;  /* Chrome, Safari, Opera*/
+        }
+    </style>
+</head>
+<body class="antialiased leading-normal tracking-tight">
+
+    <div id="header"></div>
+    
+    <main>
+        <div id="profile"></div>
+        <div id="skills"></div>
+        <div id="familiar-technologies"></div>
+        <div id="projects"></div>
+        <div id="contact"></div>
+    </main>
+    
+    <div id="footer"></div>
+
+    <script>
+        function includeHTML() {
+            var z, i, elmnt, file, xhttp;
+            z = document.getElementsByTagName("*");
+            for (i = 0; i < z.length; i++) {
+                elmnt = z[i];
+                file = elmnt.getAttribute("include-html");
+                if (file) {
+                    xhttp = new XMLHttpRequest();
+                    xhttp.onreadystatechange = function() {
+                        if (this.readyState == 4) {
+                            if (this.status == 200) {elmnt.innerHTML = this.responseText;}
+                            if (this.status == 404) {elmnt.innerHTML = "Page not found.";}
+                            elmnt.removeAttribute("include-html");
+                            includeHTML();
+                        }
+                    }
+                    xhttp.open("GET", file, true);
+                    xhttp.send();
+                    return;
+                }
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const components = ['header', 'profile', 'skills', 'familiar-technologies', 'projects', 'contact', 'footer'];
+            components.forEach(component => {
+                fetch('Components/' + component + '.html')
+                    .then(response => response.text())
+                    .then(data => {
+                        document.getElementById(component).innerHTML = data;
+                    });
+            });
+        });
+    </script>
+
+</body>
+</html>
