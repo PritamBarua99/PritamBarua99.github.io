@@ -1,0 +1,45 @@
+@keyframes scroll-left {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.familiar-technologies-scroll-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.familiar-technologies-scroll-content {
+    display: flex;
+    width: max-content;
+    animation: scroll-left 40s linear infinite;
+    padding-right: 2rem; /* Add some padding to the right to prevent abrupt ending */
+}
+
+.familiar-technologies-scroll-content > div {
+    margin-right: 3rem; /* Adjust spacing between technologies */
+}
+
+.familiar-technologies-blur-left,
+.familiar-technologies-blur-right {
+    position: absolute;
+    top: 0;
+    width: 10rem; /* Adjust blur width as needed */
+    height: 100%;
+    pointer-events: none;
+    z-index: 20;
+}
+
+.familiar-technologies-blur-left {
+    left: 0;
+    background: linear-gradient(to right, #1a202c, transparent); /* Adjust color to match background */
+}
+
+.familiar-technologies-blur-right {
+    right: 0;
+    background: linear-gradient(to left, #1a202c, transparent); /* Adjust color to match background */
+}
